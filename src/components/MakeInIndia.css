@@ -1,61 +1,82 @@
 .make-in-india {
-    background: linear-gradient(rgba(10, 26, 47, 0.9), rgba(10, 26, 47, 0.9)), url('https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg');
-    /* Fallback URL, should be local or robust */
+    position: relative;
+    /* Cinematic dark background with flag hint */
+    background: radial-gradient(circle at center, rgba(10, 26, 47, 0.95), #050b14), url('https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    color: var(--white);
-    padding: 80px 0;
+    background-blend-mode: overlay;
+    padding: 140px 0;
     text-align: center;
+    overflow: hidden;
+}
+
+.make-in-india::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #050b14 0%, transparent 20%, transparent 80%, #050b14 100%);
+    pointer-events: none;
 }
 
 .mii-content {
-    max-width: 800px;
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .mii-badge {
-    width: 120px;
-    height: 120px;
-    background: var(--white);
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Glass */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(255, 153, 51, 0.5);
-    /* Orange glow */
-}
-
-/* Simulating the Make in India Lion or similar symbol text */
-.mii-logo-text {
-    font-weight: 800;
-    color: var(--primary-text);
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    line-height: 1;
+    margin-bottom: 30px;
+    box-shadow: 0 0 50px rgba(255, 153, 51, 0.3);
+    /* Saffron glow */
+    animation: pulse-glow 3s infinite;
 }
 
 .mii-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 3.5rem;
+    margin-bottom: 25px;
     color: var(--white);
+    line-height: 1.2;
 }
 
 .mii-text {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-size: 1.3rem;
+    margin-bottom: 40px;
     opacity: 0.9;
+    line-height: 1.8;
+    color: #d1d5db;
 }
 
 .mii-highlight {
     color: #FF9933;
     /* Saffron */
-    font-weight: bold;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(255, 153, 51, 0.5);
 }
 
 .mii-highlight-2 {
     color: #138808;
     /* India Green */
-    font-weight: bold;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(19, 136, 8, 0.5);
+}
+
+@media (max-width: 768px) {
+    .mii-title {
+        font-size: 2.5rem;
+    }
 }

@@ -1,8 +1,26 @@
 import React from 'react';
 import './Features.css';
 import { FaShieldVirus, FaClock, FaSprayCan, FaQrcode, FaCoins, FaHelmetSafety } from 'react-icons/fa6';
+import useScrollReveal from '../hooks/useScrollReveal';
+
+// Helper component to handle individual scroll reveals
+const FeatureCard = ({ icon, title, desc, delay }) => {
+    const cardRef = useScrollReveal(delay);
+
+    return (
+        <div className="feature-card reveal-hidden" ref={cardRef}>
+            <div className="feature-icon-wrapper">
+                {icon}
+            </div>
+            <h3 className="feature-title">{title}</h3>
+            <p className="feature-desc">{desc}</p>
+        </div>
+    );
+};
 
 const Features = () => {
+    const headerRef = useScrollReveal(100);
+
     const features = [
         {
             icon: <FaShieldVirus />,
@@ -39,20 +57,20 @@ const Features = () => {
     return (
         <section className="features" id="features">
             <div className="container">
-                <div className="section-header">
+                <div className="section-header reveal-hidden" ref={headerRef}>
                     <span className="section-subtitle">Why Choose Freshpod</span>
                     <h2 className="section-title">What Makes Us Different</h2>
                 </div>
 
                 <div className="features-grid">
                     {features.map((item, index) => (
-                        <div className="feature-card" key={index}>
-                            <div className="feature-icon-wrapper">
-                                {item.icon}
-                            </div>
-                            <h3 className="feature-title">{item.title}</h3>
-                            <p className="feature-desc">{item.desc}</p>
-                        </div>
+                        <FeatureCard
+                            key={index}
+                            icon={item.icon}
+                            title={item.title}
+                            desc={item.desc}
+                            delay={index * 150} // Stagger delay
+                        />
                     ))}
                 </div>
             </div>

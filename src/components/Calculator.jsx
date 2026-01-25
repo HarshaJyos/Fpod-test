@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import './Calculator.css';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const Calculator = () => {
     const [inputs, setInputs] = useState({
-        costPerMachine: 150000, // Default assumption, editable
+        costPerMachine: 150000,
         numMachines: 1,
         cleaningPrice: 50,
         cleansPerDay: 20
     });
 
     const [result, setResult] = useState(null);
+
+    const textRef = useScrollReveal(200);
+    const formRef = useScrollReveal(400);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,8 +29,6 @@ const Calculator = () => {
         const monthlyRevenue = dailyRevenue * 30;
         const annualRevenue = monthlyRevenue * 12;
 
-        // Simple ROI calculation: (Annual Revenue / Total Investment) * 100
-        // Assuming Total Investment = Cost of Machines (simplification)
         const totalInvestment = inputs.costPerMachine * inputs.numMachines;
         const roi = totalInvestment > 0 ? ((annualRevenue / totalInvestment) * 100).toFixed(0) : 0;
 
@@ -50,28 +52,36 @@ const Calculator = () => {
     return (
         <section className="calculator" id="calculator">
             <div className="container calc-container">
-                <div className="calc-headers">
-                    <span className="section-subtitle">Business Opportunity</span>
-                    <h2>Calculate Your Returns</h2>
+                <div className="calc-headers reveal-hidden" ref={textRef}>
+                    <span className="section-subtitle">Business Intelligence</span>
+                    <h2>Visualise Your ROI</h2>
                     <p>
-                        See how profitable a Freshpod installation can be. Ideal for fleets, rentals,
-                        petrol pumps, and malls. Calculate your potential earnings now.
+                        The Freshpod business model is designed for high returns and low maintenance.
+                        Use our interactive estimator to project your earnings based on machine deployment.
                     </p>
 
-                    {result && (
+                    {result ? (
                         <div className="result-box">
-                            <h3 className="result-title">Estimated Annual Revenue</h3>
+                            <h3 className="result-title">Projected Annual Revenue</h3>
                             <span className="result-value">₹{result.annual.toLocaleString('en-IN')}</span>
-                            <p className="result-roi">ROI: {result.roi}% per year</p>
-                            <p style={{ marginTop: '10px', fontSize: '0.9rem', opacity: 0.8 }}>Monthly: ₹{result.monthly.toLocaleString('en-IN')}</p>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '15px' }}>
+                                <span className="result-roi">ROI: {result.roi}% / yr</span>
+                                <span style={{ color: 'var(--secondary-text)', fontSize: '0.9rem' }}>Mo: ₹{result.monthly.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="result-box" style={{ opacity: 0.5, borderStyle: 'dashed' }}>
+                            <h3 className="result-title">Ready to Calculate</h3>
+                            <p style={{ color: 'var(--secondary-text)' }}>Enter your parameters to see the projection.</p>
                         </div>
                     )}
                 </div>
 
-                <div className="calc-form">
+                <div className="calc-form reveal-hidden" ref={formRef}>
                     <form onSubmit={calculateProfit}>
                         <div className="form-group">
-                            <label>Cost of Machine (₹)</label>
+                            <label>Machine Cost (₹)</label>
                             <input
                                 type="number"
                                 name="costPerMachine"
@@ -80,7 +90,7 @@ const Calculator = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Number of Machines</label>
+                            <label>Unit Count</label>
                             <input
                                 type="number"
                                 name="numMachines"
@@ -89,7 +99,7 @@ const Calculator = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Price per Clean (₹)</label>
+                            <label>Service Price (₹)</label>
                             <input
                                 type="number"
                                 name="cleaningPrice"
@@ -98,7 +108,7 @@ const Calculator = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Cleans per Day (Avg)</label>
+                            <label>Daily Cycles (Avg)</label>
                             <input
                                 type="number"
                                 name="cleansPerDay"
@@ -107,8 +117,8 @@ const Calculator = () => {
                             />
                         </div>
 
-                        <button type="submit" className="calc-btn">Calculate Profit</button>
-                        <div className="reset-btn" onClick={resetCalculator}>Reset Calculator</div>
+                        <button type="submit" className="calc-btn">CALCULATE PROJECTION</button>
+                        <div className="reset-btn" onClick={resetCalculator}>Reset Parameters</div>
                     </form>
                 </div>
             </div>
