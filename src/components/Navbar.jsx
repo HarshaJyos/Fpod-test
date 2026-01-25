@@ -15,10 +15,7 @@ const Navbar = () => {
           Freshpod
         </div>
 
-        <div className="mobile-toggle" onClick={handleClick}>
-          {click ? <FaTimes /> : <FaBars />}
-        </div>
-
+        {/* Desktop Menu */}
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-item">
             <a href="#home" className="nav-link" onClick={closeMobileMenu}>Home</a>
@@ -39,12 +36,22 @@ const Navbar = () => {
             <a href="#calculator" className="nav-link" onClick={closeMobileMenu}>Calculator</a>
           </li>
           <li className="nav-actions">
-             <a href="https://wa.me/917815908571" target="_blank" rel="noreferrer" className="whatsapp-btn">
-               <FaWhatsapp />
-             </a>
-             <a href="mailto:hello@freshpod.in" className="contact-btn">Contact</a>
+            <a href="https://wa.me/917815908571" target="_blank" rel="noreferrer" className="whatsapp-btn">
+              <FaWhatsapp />
+            </a>
+            <a href="mailto:hello@freshpod.in" className="contact-btn">Contact</a>
           </li>
         </ul>
+
+        {/* Mobile Actions (Visible <= 960px) */}
+        <div className="mobile-actions-wrapper">
+          <a href="https://wa.me/917815908571" target="_blank" rel="noreferrer" className="mobile-whatsapp-btn">
+            <FaWhatsapp />
+          </a>
+          <div className="mobile-toggle" onClick={handleClick}>
+            {click ? <FaTimes /> : <FaBars />}
+          </div>
+        </div>
       </div>
     </nav>
   );
