@@ -1,0 +1,61 @@
+.make-in-india {
+    background: linear-gradient(rgba(10, 26, 47, 0.9), rgba(10, 26, 47, 0.9)), url('https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg');
+    /* Fallback URL, should be local or robust */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.mii-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mii-badge {
+    width: 120px;
+    height: 120px;
+    background: var(--white);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(255, 153, 51, 0.5);
+    /* Orange glow */
+}
+
+/* Simulating the Make in India Lion or similar symbol text */
+.mii-logo-text {
+    font-weight: 800;
+    color: var(--primary-text);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.mii-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.mii-text {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.mii-highlight {
+    color: #FF9933;
+    /* Saffron */
+    font-weight: bold;
+}
+
+.mii-highlight-2 {
+    color: #138808;
+    /* India Green */
+    font-weight: bold;
+}
