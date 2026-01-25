@@ -1,7 +1,7 @@
 import React from 'react';
 import './Procedure.css';
 import useScrollReveal from '../hooks/useScrollReveal';
-import { FaQrcode, FaUnlock, FaHelmetSafety, FaLock, FaMagic, FaMotorcycle } from 'react-icons/fa6';
+import { FaQrcode, FaUnlock, FaHelmetSafety, FaLock, FaBroom, FaMotorcycle } from 'react-icons/fa6';
 
 const Procedure = () => {
     const headerRef = useScrollReveal(100);
@@ -11,7 +11,7 @@ const Procedure = () => {
         { num: 2, text: "Unlock Door", icon: <FaUnlock /> },
         { num: 3, text: "Place Helmet", icon: <FaHelmetSafety /> },
         { num: 4, text: "Lock Door", icon: <FaLock /> },
-        { num: 5, text: "Start Clean", icon: <FaMagic /> },
+        { num: 5, text: "Start Clean", icon: <FaBroom /> },
         { num: 6, text: "Ride Fresh", icon: <FaMotorcycle /> },
     ];
 
